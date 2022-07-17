@@ -1,0 +1,6 @@
+export const FETCH_LANDS = "FETCH_LANDS";
+export const FETCH_COMPANIES = "FETCH_COMPANIES";
+export const FETCH_PARTNERS = "FETCH_PARTNERS";
+export const CREATE_COMPANY = "CREATE_COMPANY";
+export const FETCH_COMPANY = "FETCH_COMPANY";
+export const EDIT_COMPANY = "EDIT_COMPANY";
