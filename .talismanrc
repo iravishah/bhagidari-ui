@@ -9,3 +9,12 @@ fileignoreconfig:
   checksum: a17db29b069ae97887cd34a14b3cc938c35a64afafa69473f5dc6c584f0b184a
 - filename: src/components/Login/Login.js
   checksum: 7fe3ffbcbda5cd0db6607bd1a139ce17d829d18e11dfd2778d4bbbfdd6f5b98c
+fileignoreconfig:
+- filename: package-lock.json
+  checksum: 941fd2559adff7c9204d9bdf7e988de86451aa7dc82021733cf0744e180159e5
+- filename: src/components/Company/CompanyList.js
+  checksum: d63697e159994c4b50038b07cc18df05f378c4409319f4eb43ebaed678a6c156
+- filename: src/components/Land/LandList.js
+  checksum: cc3936580540c7b30178ae7a711464715684629aea6ef49e7ad238429a4a219c
+- filename: src/components/Partener/PartenerList.js
+  checksum: 4a39d930e3f548e887a39bd5fe73c3a0e12f4200babbd2b0707b16102c010711
