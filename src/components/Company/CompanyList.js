@@ -3,22 +3,31 @@ import { connect } from 'react-redux';
 
 import { fetchCompanies } from '../../actions/companies';
 import NavLink from '../Helper/NavLink';
-import history from '../../histoty';
 
 class CompanyList extends React.Component {
     componentDidMount() {
         this.props.fetchCompanies();
     }
 
-    handleCompanyClick(uid) {
-        history.push(`/companies/edit/${uid}`);
-    }
-
     renderList() {
         return this.props.companies.map(company => {
             return (
-                <tr key={company.uid} onClick={() => { this.handleCompanyClick(company.uid) }}>
-                    <td>{company.name}</td>
+                <tr key={company.uid}>
+                    <td>
+                        {company.name}
+                    </td>
+                    <td style={{ textAlign: 'right' }}>
+                        <NavLink
+                            to={`/companies/${company.uid}/view`}
+                            buttonName="View"
+                            className="ui button standard"
+                        />
+                        <NavLink
+                            to={`/companies/${company.uid}/edit`}
+                            buttonName="Edit"
+                            className="ui button green"
+                        />
+                    </td>
                 </tr>
             )
         })
@@ -27,10 +36,11 @@ class CompanyList extends React.Component {
     render() {
         return (
             <div>
-                <table className="ui celled selectable table">
+                <table className="ui single table">
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

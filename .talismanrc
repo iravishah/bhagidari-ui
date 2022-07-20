@@ -18,3 +18,6 @@ fileignoreconfig:
   checksum: cc3936580540c7b30178ae7a711464715684629aea6ef49e7ad238429a4a219c
 - filename: src/components/Partener/PartenerList.js
   checksum: 4a39d930e3f548e887a39bd5fe73c3a0e12f4200babbd2b0707b16102c010711
+fileignoreconfig:
+- filename: src/actions/auth.js
+  checksum: f08f50ecb20ca08931858760789e0ee6187a74ef59e914330fa96c974e20281a

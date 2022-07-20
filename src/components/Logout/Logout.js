@@ -12,9 +12,9 @@ class Logout extends React.Component {
 
     render() {
         return (
-            <div className="item" onClick={this.handleLogout}>
+            <Link to="/login" className="item" onClick={this.handleLogout}>
                 Logout
-            </div>
+            </Link>
         )
     }
 }

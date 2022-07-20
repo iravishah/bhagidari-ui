@@ -1,10 +1,8 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
 
-import { login } from '../../actions/auth';
+class PartenerForm extends React.Component {
 
-class LoginForm extends React.Component {
     renderError({ error, touched }) {
         if (touched && error) {
             return (
@@ -17,19 +15,19 @@ class LoginForm extends React.Component {
         }
     }
 
-    renderInput = ({ input, label, meta, type }) => {
+    renderInput = ({ input, label, meta }) => {
         const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
         return (
             <div className={className}>
                 <label>{label}</label>
-                <input {...input} type={type} autoComplete="off" />
+                <input {...input} autoComplete="off" />
                 {this.renderError(meta)}
             </div>
         )
     }
 
-    onSubmit = ({ username, password }) => {
-        this.props.login(username, password);
+    onSubmit = (formValues) => {
+        this.props.onSubmit(formValues);
     }
 
     render() {
@@ -38,48 +36,38 @@ class LoginForm extends React.Component {
                 onSubmit={this.props.handleSubmit(this.onSubmit)}
                 className="ui form error"
             >
-                <div className="ui error message">
-                    {this.props.message ? 'Invalid user name or password' : null}
-                </div>
                 <Field
-                    name="username"
+                    name="name"
                     component={this.renderInput}
-                    label="Username"
+                    label="Enter Name"
                 />
                 <Field
-                    name="password"
+                    name="ph_no"
                     component={this.renderInput}
-                    label="Password"
-                    type="password"
+                    label="Enter Phone Number"
+                />
+                <Field
+                    name="ph_no"
+                    component={this.renderInput}
+                    label="Enter Phone Number"
                 />
                 <button className="ui button primary">
-                    Log in
+                    Submit
                 </button>
             </form>
         )
     }
 }
+
 const validate = (formValues) => {
     const errors = {};
-    if (!formValues.username) {
-        errors.username = 'You must enter a username'
-    }
-    if (!formValues.password) {
-        errors.name = 'You must enter a password'
+    if (!formValues.name) {
+        errors.name = 'You must enter a partner name'
     }
     return errors;
 };
 
-const formWrapped = reduxForm({
-    form: 'loginForm',
+export default reduxForm({
+    form: 'PartenerForm',
     validate
-})(LoginForm);
-
-const mapStateToProps = (state) => {
-    return {
-        isLoggedIn: state.auth.isLoggedIn,
-        message: state.auth.message
-    }
-}
-
-export default connect(mapStateToProps, { login })(formWrapped);
+})(PartenerForm);

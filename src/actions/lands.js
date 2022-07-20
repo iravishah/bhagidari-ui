@@ -1,9 +1,20 @@
+import { get } from 'lodash';
+
 import base from '../apis/base';
 import {
-    FETCH_LANDS
-} from './types'
+    FETCH_LANDS, LOGOUT
+} from './types';
+import authHeader from '../services/auth/auth-header';
+import history from '../histoty';
 
 export const fetchLands = () => async dispatch => {
-    const response = await base.get('/lands');
-    dispatch({ type: FETCH_LANDS, payload: response.data });
+    try {
+        const response = await base.get('/lands', { headers: authHeader() });
+        dispatch({ type: FETCH_LANDS, payload: response.data });
+    } catch (e) {
+        if (get(e, 'response.data.statusCode') === 401) {
+            dispatch({ type: LOGOUT })
+            history.push('/login');
+        }
+    }
 }

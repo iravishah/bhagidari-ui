@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import NavLink from '../Helper/NavLink';
 import { fetchPartners } from '../../actions/partners';
 
 class PartnerList extends React.Component {
@@ -13,6 +14,7 @@ class PartnerList extends React.Component {
             return (
                 <tr key={partner.uid}>
                     <td>{partner.name}</td>
+                    <td>{partner.company.name}</td>
                     <td>{partner.ph_no}</td>
                 </tr>
             )
@@ -21,17 +23,27 @@ class PartnerList extends React.Component {
 
     render() {
         return (
-            <table className="ui single line table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Phone No</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.renderList()}
-                </tbody>
-            </table>
+            <div>
+                <table className="ui single line table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Company</th>
+                            <th>Phone No</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.renderList()}
+                    </tbody>
+                </table>
+                <div style={{ textAlign: 'right' }}>
+                    <NavLink
+                        to="/partners/create"
+                        buttonName="Create Partner"
+                        className="ui button primary"
+                    />
+                </div>
+            </div>
         )
     }
 }
