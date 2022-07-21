@@ -5,6 +5,7 @@ import {
     FETCH_LANDS, LOGOUT
 } from './types';
 import authHeader from '../services/auth/auth-header';
+import authService from '../services/auth/auth-header';
 import history from '../histoty';
 
 export const fetchLands = () => async dispatch => {
@@ -13,7 +14,8 @@ export const fetchLands = () => async dispatch => {
         dispatch({ type: FETCH_LANDS, payload: response.data });
     } catch (e) {
         if (get(e, 'response.data.statusCode') === 401) {
-            dispatch({ type: LOGOUT })
+            dispatch({ type: LOGOUT });
+            authService.logout();
             history.push('/login');
         }
     }

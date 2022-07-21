@@ -13,6 +13,7 @@ import {
     LOGIN_SUCCESS
 } from '../actions/types';
 import history from '../histoty';
+import CompanyView from './Company/ComanyView';
 
 class Routes extends React.Component {
     componentDidMount() {
@@ -37,6 +38,7 @@ class Routes extends React.Component {
                 <Route path="/companies/list" exact component={CompanyList} />
                 <Route path="/companies/create" exact component={CompanyCreate} />
                 <Route path="/companies/:id/edit" exact component={CompanyEdit} />
+                <Route path="/companies/:id/view" exact component={CompanyView} />
                 <Route path="/partners/list" exact component={PartnersList} />
                 <Route path="/partners/create" exact component={PartenerCreate} />
             </div>

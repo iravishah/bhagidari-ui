@@ -1,9 +1,13 @@
+import { get } from 'lodash';
+
 import base from '../apis/base';
 import {
     FETCH_PARTNERS,
-    CREATE_PARTNER
+    CREATE_PARTNER,
+    LOGOUT
 } from './types';
 import authHeader from '../services/auth/auth-header';
+import authService from '../services/auth/auth.service';
 import history from '../histoty';
 
 export const fetchPartners = () => async dispatch => {
@@ -12,8 +16,15 @@ export const fetchPartners = () => async dispatch => {
 }
 
 export const createPartner = (formValues) => async dispatch => {
-    const response = await base.post('/parteners', formValues, { headers: authHeader() });
-    dispatch({ type: CREATE_PARTNER, payload: response.data });
-    history.push('/partners/list');
-
+    try {
+        const response = await base.post('/parteners', formValues, { headers: authHeader() });
+        dispatch({ type: CREATE_PARTNER, payload: response.data });
+        history.push('/partners/list');
+    } catch (e) {
+        if (get(e, 'response.data.statusCode') === 401) {
+            dispatch({ type: LOGOUT })
+            authService.logout();
+            history.push('/login');
+        }
+    }
 }

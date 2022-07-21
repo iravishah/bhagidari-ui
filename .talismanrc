@@ -21,3 +21,6 @@ fileignoreconfig:
 fileignoreconfig:
 - filename: src/actions/auth.js
   checksum: f08f50ecb20ca08931858760789e0ee6187a74ef59e914330fa96c974e20281a
+fileignoreconfig:
+- filename: src/components/Company/CompanyList.js
+  checksum: 79910b897205306c47fafb8d0fd705d53ee0a2f70f337709f3fac5a931785f5a

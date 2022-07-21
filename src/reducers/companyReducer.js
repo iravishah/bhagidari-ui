@@ -3,7 +3,8 @@ import {
     CREATE_COMPANY,
     FETCH_COMPANIES,
     FETCH_COMPANY,
-    EDIT_COMPANY
+    EDIT_COMPANY,
+    FETCH_COMPANY_PARTNERS
 } from '../actions/types'
 
 export default (state = {}, action) => {

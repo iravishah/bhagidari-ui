@@ -5,11 +5,13 @@ import landReducer from './landReducer';
 import companyReducer from './companyReducer';
 import partnerReducer from './partnerReducer';
 import authReducer from './authReducer';
+import companyPartnerreducer from './companyPartnersReducer';
 
 export default combineReducers({
     lands: landReducer,
     companies: companyReducer,
     partners: partnerReducer,
     form: formReducer,
-    auth: authReducer
+    auth: authReducer,
+    companyPartners: companyPartnerreducer
 });
