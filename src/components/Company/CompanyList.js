@@ -61,7 +61,8 @@ class CompanyList extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        companies: Object.values(state.companies)
+        companies: Object.values(state.companies),
+        partners: Object.values(state.partners)
     }
 }
 

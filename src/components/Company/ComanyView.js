@@ -1,28 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchCompany, fetchCompanyPartners } from '../../actions/companies';
+import { fetchCompany } from '../../actions/companies';
+import { fetchPartners } from '../../actions/partners';
 import NavLink from '../Helper/NavLink';
 
 class CompanyView extends React.Component {
 
     componentDidMount() {
-        console.log('inside componet did mount');
         this.props.fetchCompany(this.props.match.params.id);
-        this.props.fetchCompanyPartners(this.props.match.params.id);
+        this.props.fetchPartners();
     }
 
     renderPartners(company) {
-        return this.props.companyPartners.map(companyPartner => {
-            const currentCompany = companyPartner.share.find((cp) => cp.company === company._id);
-            console.log(currentCompany);
+        const partners = this.props.partners.map((partner) => {
+            const partnerCompanyObject = partner.share.find((p) => p.company === company._id);
+            if (partnerCompanyObject) {
+                partner.partnerCompanyObject = partnerCompanyObject;
+                return partner;
+            }
+        }).filter(e => e);
+
+        return partners.map(partner => {
             return (
-                <tr key={companyPartner.uid}>
+                <tr key={partner.uid}>
                     <td>
-                        {companyPartner.name}
+                        {partner.name}
                     </td>
                     <td>
-                        {currentCompany.percentage}
+                        {partner.partnerCompanyObject.percentage}
                     </td>
                 </tr>
             )
@@ -31,7 +37,7 @@ class CompanyView extends React.Component {
 
     render() {
         const company = this.props.company;
-        if (!this.props.company || !this.props.companyPartners) {
+        if (!company || !this.props.partners.length) {
             return <div>Loading...</div>
         }
 
@@ -84,8 +90,8 @@ class CompanyView extends React.Component {
 const mapStateToProps = (state, ownProps) => {
     return {
         company: state.companies[ownProps.match.params.id],
-        companyPartners: Object.values(state.companyPartners)
+        partners: Object.values(state.partners)
     }
 }
 
-export default connect(mapStateToProps, { fetchCompany, fetchCompanyPartners })(CompanyView);
+export default connect(mapStateToProps, { fetchCompany, fetchPartners })(CompanyView);

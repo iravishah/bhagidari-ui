@@ -11,13 +11,13 @@ import authService from '../services/auth/auth.service';
 import history from '../histoty';
 
 export const fetchPartners = () => async dispatch => {
-    const response = await base.get('/parteners', { headers: authHeader() });
+    const response = await base.get('/partners', { headers: authHeader() });
     dispatch({ type: FETCH_PARTNERS, payload: response.data })
 }
 
 export const createPartner = (formValues) => async dispatch => {
     try {
-        const response = await base.post('/parteners', formValues, { headers: authHeader() });
+        const response = await base.post('/partners', formValues, { headers: authHeader() });
         dispatch({ type: CREATE_PARTNER, payload: response.data });
         history.push('/partners/list');
     } catch (e) {

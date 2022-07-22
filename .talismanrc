@@ -24,3 +24,6 @@ fileignoreconfig:
 fileignoreconfig:
 - filename: src/components/Company/CompanyList.js
   checksum: 79910b897205306c47fafb8d0fd705d53ee0a2f70f337709f3fac5a931785f5a
+fileignoreconfig:
+- filename: src/components/Company/ComanyView.js
+  checksum: 0f3467b41042b3a7eb253803a04b0f222697bd830a948deb3dde59dee8bee9d7

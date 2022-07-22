@@ -14,7 +14,6 @@ class PartnerList extends React.Component {
             return (
                 <tr key={partner.uid}>
                     <td>{partner.name}</td>
-                    <td>{partner.company.name}</td>
                     <td>{partner.ph_no}</td>
                 </tr>
             )
@@ -28,7 +27,6 @@ class PartnerList extends React.Component {
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Company</th>
                             <th>Phone No</th>
                         </tr>
                     </thead>
