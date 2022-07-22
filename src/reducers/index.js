@@ -6,6 +6,7 @@ import companyReducer from './companyReducer';
 import partnerReducer from './partnerReducer';
 import authReducer from './authReducer';
 import companyPartnerreducer from './companyPartnersReducer';
+import shareReducer from './shareReducer';
 
 export default combineReducers({
     lands: landReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
     partners: partnerReducer,
     form: formReducer,
     auth: authReducer,
-    companyPartners: companyPartnerreducer
+    companyPartners: companyPartnerreducer,
+    shares: shareReducer
 });

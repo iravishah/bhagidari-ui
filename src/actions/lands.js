@@ -5,7 +5,7 @@ import {
     FETCH_LANDS, LOGOUT
 } from './types';
 import authHeader from '../services/auth/auth-header';
-import authService from '../services/auth/auth-header';
+import authService from '../services/auth/auth.service';
 import history from '../histoty';
 
 export const fetchLands = () => async dispatch => {

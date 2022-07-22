@@ -1,28 +1,35 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { fetchShares } from '../../actions/shares';
 import NavLink from '../Helper/NavLink';
-import { fetchPartners } from '../../actions/partners';
 
-class PartnerList extends React.Component {
+class ShareList extends React.Component {
     componentDidMount() {
-        this.props.fetchPartners();
+        this.props.fetchShares();
     }
 
     renderList() {
-        return this.props.partners.map(partner => {
+        return this.props.shares.map(share => {
             return (
-                <tr key={partner.uid}>
-                    <td>{partner.name}</td>
-                    <td>{partner.ph_no}</td>
+                <tr key={share.uid}>
+                    <td>
+                        {share.company.name}
+                    </td>
+                    <td>
+                        {share.partner.name}
+                    </td>
+                    <td>
+                        {share.percentage}
+                    </td>
                     <td style={{ textAlign: 'right' }}>
                         <NavLink
-                            to={`/partners/${partner.uid}/view`}
+                            to={`/shares/list`}
                             buttonName="View"
                             className="ui button standard"
                         />
                         <NavLink
-                            to={`/partners/${partner.uid}/edit`}
+                            to={`/shares/${share.uid}/edit`}
                             buttonName="Edit"
                             className="ui button green"
                         />
@@ -35,11 +42,12 @@ class PartnerList extends React.Component {
     render() {
         return (
             <div>
-                <table className="ui single line table">
+                <table className="ui single table">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Phone No</th>
+                            <th>Company Name</th>
+                            <th>Partner Name</th>
+                            <th>Percentage</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -49,8 +57,8 @@ class PartnerList extends React.Component {
                 </table>
                 <div style={{ textAlign: 'right' }}>
                     <NavLink
-                        to="/partners/create"
-                        buttonName="Create Partner"
+                        to="/shares/create"
+                        buttonName="Create Share"
                         className="ui button primary"
                     />
                 </div>
@@ -61,8 +69,8 @@ class PartnerList extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        partners: Object.values(state.partners)
+        shares: Object.values(state.shares)
     }
 }
 
-export default connect(mapStateToProps, { fetchPartners })(PartnerList);
+export default connect(mapStateToProps, { fetchShares })(ShareList);

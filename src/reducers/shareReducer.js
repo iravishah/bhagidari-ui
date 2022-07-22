@@ -1,17 +1,20 @@
 import { mapKeys } from 'lodash';
 import {
-    EDIT_PARTNER,
-    FETCH_PARTNERS,
-    FETCH_PARTNER
-} from '../actions/types';
+    CREATE_SHARE,
+    EDIT_SHARE,
+    FETCH_SHARE,
+    FETCH_SHARES
+} from "../actions/types";
 
 export default (state = {}, action) => {
     switch (action.type) {
-        case EDIT_PARTNER:
+        case CREATE_SHARE:
             return { ...state, [action.payload.uid]: action.payload }
-        case FETCH_PARTNER:
+        case EDIT_SHARE:
             return { ...state, [action.payload.uid]: action.payload }
-        case FETCH_PARTNERS:
+        case FETCH_SHARE:
+            return { ...state, [action.payload.uid]: action.payload }
+        case FETCH_SHARES:
             return { ...state, ...mapKeys(action.payload, 'uid') }
         default:
             return state;

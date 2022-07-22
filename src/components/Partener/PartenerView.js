@@ -1,20 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchCompany } from '../../actions/companies';
+import { fetchPartner } from '../../actions/partners';
 import { fetchShares } from '../../actions/shares';
 import NavLink from '../Helper/NavLink';
 
-class CompanyView extends React.Component {
+class PartnerView extends React.Component {
 
     componentDidMount() {
-        this.props.fetchCompany(this.props.match.params.id);
+        this.props.fetchPartner(this.props.match.params.id);
         this.props.fetchShares();
     }
 
-    renderPartners(company) {
+    renderPartners(partner) {
         const companyInvestors = this.props.shares.map((share) => {
-            if (company.uid === share.company.uid) {
+            if (partner.uid === share.partner.uid) {
                 return share;
             }
         }).filter(e => e);
@@ -27,7 +27,7 @@ class CompanyView extends React.Component {
             return (
                 <tr key={companyInvestor.uid}>
                     <td>
-                        {companyInvestor.partner.name}
+                        {companyInvestor.company.name}
                     </td>
                     <td>
                         {companyInvestor.percentage}
@@ -38,26 +38,30 @@ class CompanyView extends React.Component {
     }
 
     render() {
-        const company = this.props.company;
+        const partner = this.props.partner;
         const shares = this.props.shares;
-        if (!company || !shares || !shares.length) {
+        if (!partner || !shares || !shares.length) {
             return <div>Loading...</div>
         }
 
         return (
             <div>
-                <h3>Company Details</h3>
+                <h3>Partner Details</h3>
                 <div>
                     <table className="ui single table">
                         <thead>
                             <tr>
                                 <th>Name</th>
+                                <th>Phone Number</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr key={company.uid}>
+                            <tr key={partner.uid}>
                                 <td>
-                                    {company.name}
+                                    {partner.name}
+                                </td>
+                                <td>
+                                    {partner.ph_no}
                                 </td>
                             </tr>
                         </tbody>
@@ -65,7 +69,7 @@ class CompanyView extends React.Component {
                 </div>
                 <div className="ui hidden divider"></div>
                 <div>
-                    <h3>Company Partners</h3>
+                    <h3>Partner Companies</h3>
                     <table className="ui single table">
                         <thead>
                             <tr>
@@ -74,12 +78,12 @@ class CompanyView extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.renderPartners(company)}
+                            {this.renderPartners(partner)}
                         </tbody>
                     </table>
                     <div>
                         <NavLink
-                            to={`/companies/list`}
+                            to={`/partners/list`}
                             buttonName="Back"
                             className="ui button primary"
                         />
@@ -92,9 +96,9 @@ class CompanyView extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        company: state.companies[ownProps.match.params.id],
+        partner: state.partners[ownProps.match.params.id],
         shares: Object.values(state.shares)
     }
 }
 
-export default connect(mapStateToProps, { fetchCompany, fetchShares })(CompanyView);
+export default connect(mapStateToProps, { fetchPartner, fetchShares })(PartnerView);

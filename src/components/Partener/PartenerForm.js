@@ -46,11 +46,6 @@ class PartenerForm extends React.Component {
                     component={this.renderInput}
                     label="Enter Phone Number"
                 />
-                <Field
-                    name="ph_no"
-                    component={this.renderInput}
-                    label="Enter Phone Number"
-                />
                 <button className="ui button primary">
                     Submit
                 </button>
@@ -63,6 +58,9 @@ const validate = (formValues) => {
     const errors = {};
     if (!formValues.name) {
         errors.name = 'You must enter a partner name'
+    }
+    if (!formValues.ph_no) {
+        errors.ph_no = 'You must enter a phone number'
     }
     return errors;
 };
