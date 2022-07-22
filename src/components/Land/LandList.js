@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { fetchLands } from '../../actions/lands';
+import NavLink from '../Helper/NavLink';
 
 class LandList extends React.Component {
     componentDidMount() {
@@ -15,6 +16,18 @@ class LandList extends React.Component {
                     <td>{land.village.name}</td>
                     <td>{land.survey_no}</td>
                     <td>{land.company.name}</td>
+                    <td style={{ textAlign: 'right' }}>
+                        <NavLink
+                            to={`/lands/list`}
+                            buttonName="View"
+                            className="ui button standard"
+                        />
+                        <NavLink
+                            to={`/lands/${land.uid}/edit`}
+                            buttonName="Edit"
+                            className="ui button green"
+                        />
+                    </td>
                 </tr>
             )
         })
@@ -22,18 +35,28 @@ class LandList extends React.Component {
 
     render() {
         return (
-            <table className="ui single line table">
-                <thead>
-                    <tr>
-                        <th>Village Name</th>
-                        <th>Survey No</th>
-                        <th>Company Name</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.renderList()}
-                </tbody>
-            </table>
+            <div>
+                <table className="ui single line table">
+                    <thead>
+                        <tr>
+                            <th>Village Name</th>
+                            <th>Survey No</th>
+                            <th>Company Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.renderList()}
+                    </tbody>
+                </table>
+                <div style={{ textAlign: 'right' }}>
+                    <NavLink
+                        to="/lands/create"
+                        buttonName="Create Land"
+                        className="ui button primary"
+                    />
+                </div>
+            </div>
         )
     }
 }

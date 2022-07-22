@@ -11,6 +11,8 @@ import PartenerView from './Partener/PartenerView';
 import CompanyCreate from './Company/CompanyCreate';
 import CompanyEdit from './Company/CompanyEdit';
 import LandList from './Land/LandList';
+import LandCreate from './Land/LandCreate';
+import LandEdit from './Land/LandEdit';
 import {
     LOGIN_SUCCESS
 } from '../actions/types';
@@ -41,6 +43,8 @@ class Routes extends React.Component {
             <div>
                 <Route path="/" exact component={LandList} />
                 <Route path="/lands/list" exact component={LandList} />
+                <Route path="/lands/create" exact component={LandCreate} />
+                <Route path="/lands/:id/edit" exact component={LandEdit} />
                 <Route path="/companies/list" exact component={CompanyList} />
                 <Route path="/companies/create" exact component={CompanyCreate} />
                 <Route path="/companies/:id/edit" exact component={CompanyEdit} />

@@ -12,11 +12,13 @@ class PartnerEdit extends React.Component {
     }
 
     onSubmit = (formValues) => {
-        formValues = { ...this.props.partner, ...formValues }
         this.props.editPartner(this.props.match.params.id, formValues)
     }
 
     render() {
+        if (!this.props.partner) {
+            return <div>Loading...</div>
+        }
         return (
             <div>
                 <h3>Edit Partner</h3>

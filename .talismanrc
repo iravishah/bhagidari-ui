@@ -30,3 +30,15 @@ fileignoreconfig:
 fileignoreconfig:
 - filename: src/components/Company/ComanyView.js
   checksum: 615bf2d35b40013d146a6b6c090309a8bf8f9099943e95089b8e2d1742193cbb
+fileignoreconfig:
+- filename: src/components/Company/ComanyView.js
+  checksum: 383d6e58afcf7e5ff6df0f50ff66867502e47529327144e148b13540c6a9e2f1
+- filename: src/components/Share/ShareList.js
+  checksum: e16e259c7262129986b38d18dbb82c8f116dd92bcc44b5c47e978469456c1383
+- filename: src/components/Partener/PartenerView.js
+  checksum: 4acf8263dcef3cb6ebca5b16ac9f3f900f6869cd0eaf9c428cd4e50528f12bd3
+- filename: src/components/Share/ShareForm.js
+  checksum: 63a487646dccb78a2454350e3eab01077c1132c3cd63b09c24149639e7ee0e56
+fileignoreconfig:
+- filename: src/components/Land/LandForm.js
+  checksum: f5612d0ddb2800fb30431e1db8b750a991f2819285d4d8b0e8694f8383b59eb5

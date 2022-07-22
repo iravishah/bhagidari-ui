@@ -66,6 +66,6 @@ const validate = (formValues) => {
 };
 
 export default reduxForm({
-    form: 'PartenerForm',
+    form: 'partenerForm',
     validate
 })(PartenerForm);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { pick } from 'lodash';
+import { pick, merge } from 'lodash';
 
 import ShareForm from './ShareForm';
 import { fetchCompanies } from '../../actions/companies';
@@ -11,11 +11,10 @@ class ShareEdit extends React.Component {
     componentDidMount() {
         this.props.fetchShare(this.props.match.params.id);
         this.props.fetchCompanies();
-        this.props.fetchPartners()
+        this.props.fetchPartners();
     }
 
     onSubmit = (formValues) => {
-        formValues = { ...this.props.share, ...formValues }
         this.props.editShare(this.props.match.params.id, formValues)
     }
 
@@ -31,7 +30,7 @@ class ShareEdit extends React.Component {
             <div>
                 <h3>Edit a Company</h3>
                 <ShareForm
-                    initialValues={pick(this.props.share, ['company', 'partner', 'percentage'])}
+                    initialValues={merge(pick(this.props.share, ['percentage']), { company: this.props.share.company._id }, { partner: this.props.share.partner._id })}
                     onSubmit={this.onSubmit}
                     companies={this.props.companies}
                     partners={this.props.partners}

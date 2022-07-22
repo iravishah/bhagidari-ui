@@ -14,7 +14,6 @@ class CompanyEdit extends React.Component {
     }
 
     onSubmit = (formValues) => {
-        formValues = { ...this.props.company, name: formValues.name }
         this.props.editCompany(this.props.match.params.id, formValues)
     }
 

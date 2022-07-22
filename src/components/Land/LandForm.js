@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { find } from 'lodash';
 
-class ShareForm extends React.Component {
+class LandForm extends React.Component {
 
     renderError({ error, touched }) {
         if (touched && error) {
@@ -16,20 +16,8 @@ class ShareForm extends React.Component {
         }
     }
 
-    renderInput = ({ input, label, meta }) => {
-        const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
-        return (
-            <div className={className}>
-                <label>{label}</label>
-                <input {...input} autoComplete="off" />
-                {this.renderError(meta)}
-            </div>
-        )
-    }
-
-    renderOptions = (name) => {
-        const data = name === 'company' ? this.props.companies : this.props.partners;
-        return data.map((e) => {
+    renderOptions = () => {
+        return this.props.companies.map((e) => {
             return (
                 <option value={e._id} key={e.uid}>{e.name}</option>
             )
@@ -42,8 +30,19 @@ class ShareForm extends React.Component {
             <div className={className}>
                 <label>{label}</label>
                 <select {...input}>
-                    {this.renderOptions(input.name)}
+                    {this.renderOptions()}
                 </select>
+                {this.renderError(meta)}
+            </div>
+        )
+    }
+
+    renderInput = ({ input, label, meta }) => {
+        const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+        return (
+            <div className={className}>
+                <label>{label}</label>
+                <input {...input} autoComplete="off" />
                 {this.renderError(meta)}
             </div>
         )
@@ -60,26 +59,25 @@ class ShareForm extends React.Component {
                 className="ui form error"
             >
                 <Field
+                    name="village.name"
+                    component={this.renderInput}
+                    label="Enter Village Name"
+                />
+                <Field
+                    name="survey_no"
+                    component={this.renderInput}
+                    label="Enter Survey No"
+                />
+                <Field
                     name="company"
                     component={this.renderSelect}
                     label="Select a Company"
                 >
                 </Field>
-                <Field
-                    name="partner"
-                    component={this.renderSelect}
-                    label="Select a Partner"
-                >
-                </Field>
-                <Field
-                    name="percentage"
-                    component={this.renderInput}
-                    label="Enter Percentage"
-                />
                 <button className="ui button primary">
                     Submit
                 </button>
-            </form >
+            </form>
         )
     }
 }
@@ -87,12 +85,15 @@ class ShareForm extends React.Component {
 const validate = (formValues) => {
     const errors = {};
     if (!formValues.name) {
-        errors.name = 'You must enter a company name'
+        errors.name = 'You must enter a village name'
+    }
+    if (!formValues.survey_no) {
+        errors.survey_no = 'You must enter a survey number'
     }
     return errors;
 };
 
 export default reduxForm({
-    form: 'shareForm',
+    form: 'landForm',
     validate
-})(ShareForm);
+})(LandForm);
