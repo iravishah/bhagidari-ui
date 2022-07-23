@@ -21,7 +21,11 @@ class InstallmentCreate extends React.Component {
             !this.props.companies ||
             !this.props.partners.length ||
             !this.props.companies.length) {
-            return <div>Loading...</div>
+            return (
+                <div className="ui yellow message">
+                    Please create at least one company and one partner first
+                </div>
+            )
         }
         return (
             <div>

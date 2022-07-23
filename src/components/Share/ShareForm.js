@@ -86,8 +86,14 @@ class ShareForm extends React.Component {
 
 const validate = (formValues) => {
     const errors = {};
-    if (!formValues.name) {
-        errors.name = 'You must enter a company name'
+    if (!formValues.company) {
+        errors.company = 'You must select a company'
+    }
+    if (!formValues.partner) {
+        errors.partner = 'You must select a partner'
+    }
+    if (!formValues.percentage) {
+        errors.percentage = 'You must enter a percentage'
     }
     return errors;
 };

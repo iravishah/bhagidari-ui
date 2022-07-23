@@ -14,7 +14,6 @@ import authHeader from '../services/auth/auth-header';
 
 export const fetchInstallments = () => async dispath => {
     try {
-        console.log({ headers: authHeader() })
         const response = await base.get('/installments', { headers: authHeader() });
         dispath({ type: FETCH_INSTALLMENTS, payload: response.data });
     } catch (e) {
@@ -31,7 +30,7 @@ export const fetchInstallment = (id) => async dispatch => {
         const response = await base.get(`/installments/${id}`, { headers: authHeader() });
         dispatch({ type: FETCH_INSTALLMENT, payload: response.data });
     } catch (e) {
-        if (get(e, 'response.data.statusCode')) {
+        if (get(e, 'response.data.statusCode') === 401) {
             dispatch({ type: LOGOUT });
             authService.logout();
             history.push('/login');
@@ -45,7 +44,7 @@ export const createInstallment = (formValues) => async dispatch => {
         dispatch({ type: CREATE_INSTALLMENT, payload: response.data });
         history.push('/installments/list');
     } catch (e) {
-        if (get(e, 'response.data.statusCode')) {
+        if (get(e, 'response.data.statusCode') === 401) {
             dispatch({ type: LOGOUT });
             authService.logout();
             history.push('/login');
@@ -59,7 +58,7 @@ export const editInstallment = (id, formValues) => async dispatch => {
         dispatch({ type: EDIT_INSTALLMENT, payload: response.data });
         history.push('/installments/list');
     } catch (e) {
-        if (get(e, 'response.data.statusCode')) {
+        if (get(e, 'response.data.statusCode') === 401) {
             dispatch({ type: LOGOUT });
             authService.logout();
             history.push('/login');
@@ -72,7 +71,7 @@ export const deleteInstallment = (id) => async dispatch => {
         const response = await base.delete(`/installments/${id}`, { headers: authHeader() });
         dispatch({ type: DELETE_INSTALLMENT, payload: response.data });
     } catch (e) {
-        if (get(e, 'response.data.statusCode')) {
+        if (get(e, 'response.data.statusCode') === 401) {
             dispatch({ type: LOGOUT });
             authService.logout();
             history.push('/login');

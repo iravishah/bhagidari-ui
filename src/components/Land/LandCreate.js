@@ -13,12 +13,18 @@ class LandCreate extends React.Component {
     }
 
     onSubmit = (formValues) => {
+        formValues = { ...formValues, village: { name: formValues.village_name } };
+        delete formValues.village_name;
         this.props.createLand(formValues);
     }
 
     render() {
         if (!this.props.companies || !this.props.companies.length) {
-            return <div>Loading...</div>
+            return (
+                <div className="ui yellow message">
+                    Please create at least one company first
+                </div>
+            )
         }
         return (
             <div>

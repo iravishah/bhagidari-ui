@@ -17,10 +17,16 @@ class ShareCreate extends React.Component {
     }
 
     render() {
-        if (!this.props.partners || !this.props.companies || !this.props.partners.length || !this.props.companies.length) {
-            return <div>Loading...</div>
+        if (!this.props.partners ||
+            !this.props.companies ||
+            !this.props.partners.length ||
+            !this.props.companies.length) {
+            return (
+                <div className="ui yellow message">
+                    Please create at least one company and one partner first
+                </div>
+            )
         }
-        console.log({ company: this.props.companies[0]._id, partner: this.props.partners[0]._id });
         return (
             <div>
                 <h3>Create a Share</h3>
