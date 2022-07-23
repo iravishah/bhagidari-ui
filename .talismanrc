@@ -42,3 +42,8 @@ fileignoreconfig:
 fileignoreconfig:
 - filename: src/components/Land/LandForm.js
   checksum: f5612d0ddb2800fb30431e1db8b750a991f2819285d4d8b0e8694f8383b59eb5
+fileignoreconfig:
+- filename: src/components/Installment/InstallmentList.js
+  checksum: 848a85110f4ffdc599a262933b8a66aa74d4e73975b283ebd92b842df9909ae5
+- filename: src/components/Installment/InstallmentForm.js
+  checksum: 7f4fc3441ba1acac35853c1bc3c29ee715ef5e5aa17671c6168fc429cbda03b8
