@@ -1,0 +1,44 @@
+fileignoreconfig:
+- filename: package-lock.json
+  checksum: e4b994c94a7c74b56ad5e509a5eaae6d53743e5e8499eaa56ec9a7ee2297372c
+- filename: src/components/Land/Land.js
+  checksum: 8eb28a766006eaca267b983c5c2112c30d734397ff7ba3d7b90a4b69af859e3d
+- filename: src/components/Company/Company.js
+  checksum: a5550429752e2a8da53adbbae74264cba23e89cacf1449ff0dc473d87ca77111
+- filename: src/components/Partener/Partener.js
+  checksum: a17db29b069ae97887cd34a14b3cc938c35a64afafa69473f5dc6c584f0b184a
+- filename: src/components/Login/Login.js
+  checksum: 7fe3ffbcbda5cd0db6607bd1a139ce17d829d18e11dfd2778d4bbbfdd6f5b98c
+fileignoreconfig:
+- filename: package-lock.json
+  checksum: 941fd2559adff7c9204d9bdf7e988de86451aa7dc82021733cf0744e180159e5
+- filename: src/components/Company/CompanyList.js
+  checksum: d63697e159994c4b50038b07cc18df05f378c4409319f4eb43ebaed678a6c156
+- filename: src/components/Land/LandList.js
+  checksum: cc3936580540c7b30178ae7a711464715684629aea6ef49e7ad238429a4a219c
+- filename: src/components/Partener/PartenerList.js
+  checksum: 4a39d930e3f548e887a39bd5fe73c3a0e12f4200babbd2b0707b16102c010711
+fileignoreconfig:
+- filename: src/actions/auth.js
+  checksum: f08f50ecb20ca08931858760789e0ee6187a74ef59e914330fa96c974e20281a
+fileignoreconfig:
+- filename: src/components/Company/CompanyList.js
+  checksum: 79910b897205306c47fafb8d0fd705d53ee0a2f70f337709f3fac5a931785f5a
+fileignoreconfig:
+- filename: src/components/Company/ComanyView.js
+  checksum: 0f3467b41042b3a7eb253803a04b0f222697bd830a948deb3dde59dee8bee9d7
+fileignoreconfig:
+- filename: src/components/Company/ComanyView.js
+  checksum: 615bf2d35b40013d146a6b6c090309a8bf8f9099943e95089b8e2d1742193cbb
+fileignoreconfig:
+- filename: src/components/Company/ComanyView.js
+  checksum: 383d6e58afcf7e5ff6df0f50ff66867502e47529327144e148b13540c6a9e2f1
+- filename: src/components/Share/ShareList.js
+  checksum: e16e259c7262129986b38d18dbb82c8f116dd92bcc44b5c47e978469456c1383
+- filename: src/components/Partener/PartenerView.js
+  checksum: 4acf8263dcef3cb6ebca5b16ac9f3f900f6869cd0eaf9c428cd4e50528f12bd3
+- filename: src/components/Share/ShareForm.js
+  checksum: 63a487646dccb78a2454350e3eab01077c1132c3cd63b09c24149639e7ee0e56
+fileignoreconfig:
+- filename: src/components/Land/LandForm.js
+  checksum: f5612d0ddb2800fb30431e1db8b750a991f2819285d4d8b0e8694f8383b59eb5
