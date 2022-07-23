@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createShare } from '../../actions/shares';
 import { fetchCompanies } from '../../actions/companies';
 import { fetchPartners } from '../../actions/partners';
-import ShareForm from './ShareForm';
+import { createInstallment } from '../../actions/installments';
+import InstallmentForm from './InstallmentForm';
 
-class ShareCreate extends React.Component {
+class InstallmentCreate extends React.Component {
 
     componentDidMount() {
         this.props.fetchPartners();
@@ -13,18 +13,20 @@ class ShareCreate extends React.Component {
     }
 
     onSubmit = (formValues) => {
-        this.props.createShare(formValues);
+        this.props.createInstallment(formValues);
     }
 
     render() {
-        if (!this.props.partners || !this.props.companies || !this.props.partners.length || !this.props.companies.length) {
+        if (!this.props.partners ||
+            !this.props.companies ||
+            !this.props.partners.length ||
+            !this.props.companies.length) {
             return <div>Loading...</div>
         }
-        console.log({ company: this.props.companies[0]._id, partner: this.props.partners[0]._id });
         return (
             <div>
                 <h3>Create a Share</h3>
-                <ShareForm
+                <InstallmentForm
                     initialValues={{ company: this.props.companies[0]._id, partner: this.props.partners[0]._id }}
                     onSubmit={this.onSubmit}
                     companies={this.props.companies}
@@ -42,4 +44,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { createShare, fetchCompanies, fetchPartners })(ShareCreate)
+export default connect(
+    mapStateToProps, {
+    createInstallment,
+    fetchCompanies,
+    fetchPartners
+})(InstallmentCreate)

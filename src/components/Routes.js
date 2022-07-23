@@ -23,6 +23,10 @@ import ShareList from './Share/ShareList';
 import ShareCreate from './Share/ShareCreate';
 import ShareEdit from './Share/ShareEdit';
 
+import InstallmentList from './Installment/InstallmentList';
+import InstallmentCreate from './Installment/InstallmentCreate';
+import InstallmentEdit from './Installment/InstallmentEdit';
+
 class Routes extends React.Component {
     componentDidMount() {
         let token = localStorage.getItem('token');
@@ -45,10 +49,12 @@ class Routes extends React.Component {
                 <Route path="/lands/list" exact component={LandList} />
                 <Route path="/lands/create" exact component={LandCreate} />
                 <Route path="/lands/:id/edit" exact component={LandEdit} />
+
                 <Route path="/companies/list" exact component={CompanyList} />
                 <Route path="/companies/create" exact component={CompanyCreate} />
                 <Route path="/companies/:id/edit" exact component={CompanyEdit} />
                 <Route path="/companies/:id/view" exact component={CompanyView} />
+
                 <Route path="/partners/list" exact component={PartnersList} />
                 <Route path="/partners/:id/edit" exact component={PartenerEdit} />
                 <Route path="/partners/:id/view" exact component={PartenerView} />
@@ -57,6 +63,10 @@ class Routes extends React.Component {
                 <Route path="/shares/list" exact component={ShareList} />
                 <Route path="/shares/create" exact component={ShareCreate} />
                 <Route path="/shares/:id/edit" exact component={ShareEdit} />
+
+                <Route path="/installments/list" exact component={InstallmentList} />
+                <Route path="/installments/create" exact component={InstallmentCreate} />
+                <Route path="/installments/:id/edit" exact component={InstallmentEdit} />
             </div>
         )
     }

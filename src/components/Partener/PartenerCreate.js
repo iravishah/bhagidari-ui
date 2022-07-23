@@ -14,7 +14,9 @@ class PartnerCreate extends React.Component {
         return (
             <div>
                 <h3>Create Partner</h3>
-                <PartenerForm onSubmit={this.onSubmit} />
+                <PartenerForm
+                    onSubmit={this.onSubmit}
+                />
             </div>
         )
     }

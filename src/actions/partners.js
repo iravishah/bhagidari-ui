@@ -13,13 +13,30 @@ import authService from '../services/auth/auth.service';
 import history from '../histoty';
 
 export const fetchPartners = () => async dispatch => {
-    const response = await base.get('/partners', { headers: authHeader() });
-    dispatch({ type: FETCH_PARTNERS, payload: response.data })
+    try {
+        const response = await base.get('/partners', { headers: authHeader() });
+        dispatch({ type: FETCH_PARTNERS, payload: response.data })
+    } catch (e) {
+        if (get(e, 'response.data.statusCode') === 401) {
+            dispatch({ type: LOGOUT })
+            authService.logout();
+            history.push('/login');
+        }
+    }
 }
 
 export const fetchPartner = (id) => async dispatch => {
-    const response = await base.get(`/partners/${id}`, { headers: authHeader() });
-    dispatch({ type: FETCH_PARTNER, payload: response.data })
+    try {
+        const response = await base.get(`/partners/${id}`, { headers: authHeader() });
+        dispatch({ type: FETCH_PARTNER, payload: response.data })
+    } catch (e) {
+        if (get(e, 'response.data.statusCode') === 401) {
+            dispatch({ type: LOGOUT })
+            authService.logout();
+            history.push('/login');
+        }
+    }
+
 }
 
 export const createPartner = (formValues) => async dispatch => {

@@ -26,6 +26,7 @@ class LandCreate extends React.Component {
                 <LandForm
                     onSubmit={this.onSubmit}
                     companies={this.props.companies}
+                    initialValues={{ company: this.props.companies[0]._id }}
                 />
             </div>
         )

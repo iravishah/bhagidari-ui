@@ -25,6 +25,9 @@ class Header extends React.Component {
                         <Link to="/shares/list" className="item">
                             Investor Shares
                         </Link>
+                        <Link to="/installments/list" className="item">
+                            Installments
+                        </Link>
                         <Logout />
                     </div>
                 </div>

@@ -7,6 +7,7 @@ import partnerReducer from './partnerReducer';
 import authReducer from './authReducer';
 import companyPartnerreducer from './companyPartnersReducer';
 import shareReducer from './shareReducer';
+import installmentReducer from './installmentReducer';
 
 export default combineReducers({
     lands: landReducer,
@@ -15,5 +16,6 @@ export default combineReducers({
     form: formReducer,
     auth: authReducer,
     companyPartners: companyPartnerreducer,
-    shares: shareReducer
+    shares: shareReducer,
+    installments: installmentReducer
 });
