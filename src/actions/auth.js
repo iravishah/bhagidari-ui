@@ -2,7 +2,8 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     LOGOUT,
-    SET_MESSAGE
+    SET_MESSAGE,
+    CLEAR_MESSAGE
 } from '../actions/types';
 
 import AuthService from '../services/auth/auth.service';
@@ -16,6 +17,7 @@ export const login = (username, password) => async dispatch => {
         return;
     }
     dispatch({ type: LOGIN_SUCCESS, payload: response });
+    dispatch({ type: CLEAR_MESSAGE });
     history.push('/');
 }
 

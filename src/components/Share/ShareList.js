@@ -40,6 +40,13 @@ class ShareList extends React.Component {
     }
 
     render() {
+        // if (!this.props.shares || !this.props.shares.length) {
+        //     return (
+        //         <div className="ui yellow message">
+        //             No investor share available
+        //         </div>
+        //     )
+        // }
         return (
             <div>
                 <table className="ui single table">

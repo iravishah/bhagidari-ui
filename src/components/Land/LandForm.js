@@ -59,7 +59,7 @@ class LandForm extends React.Component {
                 className="ui form error"
             >
                 <Field
-                    name="village.name"
+                    name="village_name"
                     component={this.renderInput}
                     label="Enter Village Name"
                 />
@@ -84,8 +84,8 @@ class LandForm extends React.Component {
 
 const validate = (formValues) => {
     const errors = {};
-    if (!formValues.name) {
-        errors.name = 'You must enter a village name'
+    if (!formValues.village_name) {
+        errors.village_name = 'You must enter a village name'
     }
     if (!formValues.survey_no) {
         errors.survey_no = 'You must enter a survey number'

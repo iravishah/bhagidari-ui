@@ -1,4 +1,10 @@
-import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, SET_MESSAGE } from "../actions/types";
+import {
+    LOGIN_FAIL,
+    LOGIN_SUCCESS,
+    LOGOUT,
+    SET_MESSAGE,
+    CLEAR_MESSAGE
+} from "../actions/types";
 
 export default (state = {}, action) => {
     switch (action.type) {
@@ -9,6 +15,8 @@ export default (state = {}, action) => {
             return { ...state, isLoggedIn: false, token: null }
         case SET_MESSAGE:
             return { ...state, message: action.payload.message }
+        case CLEAR_MESSAGE:
+            return { ...state, message: '' }
         default:
             return state;
     }
