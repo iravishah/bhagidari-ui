@@ -1,12 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchCompanies } from '../../actions/companies';
+import { fetchCompanies, deleteCompany } from '../../actions/companies';
 import NavLink from '../Helper/NavLink';
 
 class CompanyList extends React.Component {
     componentDidMount() {
         this.props.fetchCompanies();
+    }
+
+    handleDelete(id) {
+        this.props.deleteCompany(id);
     }
 
     renderList() {
@@ -27,6 +31,12 @@ class CompanyList extends React.Component {
                             buttonName="Edit"
                             className="ui button green"
                         />
+                        <div
+                            className="ui button negative"
+                            onClick={() => { this.handleDelete(company.uid) }}
+                        >
+                            Delete
+                        </div>
                     </td>
                 </tr>
             )
@@ -61,9 +71,8 @@ class CompanyList extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        companies: Object.values(state.companies),
-        partners: Object.values(state.partners)
+        companies: Object.values(state.companies)
     }
 }
 
-export default connect(mapStateToProps, { fetchCompanies })(CompanyList);
+export default connect(mapStateToProps, { fetchCompanies, deleteCompany })(CompanyList);

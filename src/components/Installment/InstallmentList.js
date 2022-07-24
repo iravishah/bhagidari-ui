@@ -1,12 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchInstallments } from '../../actions/installments';
+import { fetchInstallments, deleteInstallment } from '../../actions/installments';
 import NavLink from '../Helper/NavLink';
 
 class InstallmentList extends React.Component {
     componentDidMount() {
         this.props.fetchInstallments();
+    }
+
+    handleDelete(id) {
+        this.props.deleteInstallment(id);
     }
 
     renderList() {
@@ -36,6 +40,9 @@ class InstallmentList extends React.Component {
                             buttonName="Edit"
                             className="ui button green"
                         />
+                        <div className="ui button negative" onClick={() => { this.handleDelete(installment.uid) }}>
+                            Delete
+                        </div>
                     </td>
                 </tr>
             )
@@ -77,4 +84,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { fetchInstallments })(InstallmentList);
+export default connect(mapStateToProps, { fetchInstallments, deleteInstallment })(InstallmentList);

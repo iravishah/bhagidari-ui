@@ -2,11 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import NavLink from '../Helper/NavLink';
-import { fetchPartners } from '../../actions/partners';
+import { fetchPartners, deletePartner } from '../../actions/partners';
 
 class PartnerList extends React.Component {
     componentDidMount() {
         this.props.fetchPartners();
+    }
+
+    handleDelete(id) {
+        this.props.deletePartner(id);
     }
 
     renderList() {
@@ -26,6 +30,10 @@ class PartnerList extends React.Component {
                             buttonName="Edit"
                             className="ui button green"
                         />
+                        <div className="ui button negative"
+                            onClick={() => { this.handleDelete(partner.uid) }}>
+                            Delete
+                        </div>
                     </td>
                 </tr>
             )
@@ -65,4 +73,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { fetchPartners })(PartnerList);
+export default connect(mapStateToProps, { fetchPartners, deletePartner })(PartnerList);

@@ -7,7 +7,7 @@ import {
     FETCH_COMPANY,
     EDIT_COMPANY,
     LOGOUT,
-    FETCH_COMPANY_PARTNERS
+    DELETE_COMPANY
 } from './types'
 import history from '../histoty';
 import authHeader from '../services/auth/auth-header';
@@ -67,10 +67,11 @@ export const editCompany = (id, formValues) => async dispatch => {
     }
 }
 
-export const fetchCompanyPartners = (id) => async dispatch => {
+export const deleteCompany = (id) => async dispatch => {
     try {
-        const response = await base.get(`/companies/${id}/partners`, { headers: authHeader() });
-        dispatch({ type: FETCH_COMPANY_PARTNERS, payload: response.data });
+        const response = await base.delete(`/companies/${id}`, { headers: authHeader() });
+        dispatch({ type: DELETE_COMPANY, payload: { id } });
+        history.push("/companies/list");
     } catch (e) {
         if (get(e, 'response.data.statusCode') === 401) {
             dispatch({ type: LOGOUT });
