@@ -1,12 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchLands } from '../../actions/lands';
+import { fetchLands, deleteLand } from '../../actions/lands';
 import NavLink from '../Helper/NavLink';
 
 class LandList extends React.Component {
     componentDidMount() {
         this.props.fetchLands();
+    }
+
+    handleDelete(id) {
+        this.props.deleteLand(id);
     }
 
     renderList() {
@@ -27,6 +31,12 @@ class LandList extends React.Component {
                             buttonName="Edit"
                             className="ui button green"
                         />
+                        <div
+                            className="ui button negative"
+                            onClick={() => { this.handleDelete(land.uid) }}
+                        >
+                            Delete
+                        </div>
                     </td>
                 </tr>
             )
@@ -67,4 +77,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { fetchLands })(LandList);
+export default connect(mapStateToProps, { fetchLands, deleteLand })(LandList);

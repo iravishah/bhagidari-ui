@@ -1,12 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchShares } from '../../actions/shares';
+import { fetchShares, deleteShare } from '../../actions/shares';
 import NavLink from '../Helper/NavLink';
 
 class ShareList extends React.Component {
     componentDidMount() {
         this.props.fetchShares();
+    }
+
+    handleDelete(id) {
+        this.props.deleteShare(id);
     }
 
     renderList() {
@@ -33,6 +37,12 @@ class ShareList extends React.Component {
                             buttonName="Edit"
                             className="ui button green"
                         />
+                        <div
+                            className="ui button negative"
+                            onClick={() => { this.handleDelete(share.uid) }}
+                        >
+                            Delete
+                        </div>
                     </td>
                 </tr>
             )
@@ -40,13 +50,6 @@ class ShareList extends React.Component {
     }
 
     render() {
-        // if (!this.props.shares || !this.props.shares.length) {
-        //     return (
-        //         <div className="ui yellow message">
-        //             No investor share available
-        //         </div>
-        //     )
-        // }
         return (
             <div>
                 <table className="ui single table">
@@ -80,4 +83,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { fetchShares })(ShareList);
+export default connect(mapStateToProps, { fetchShares, deleteShare })(ShareList);

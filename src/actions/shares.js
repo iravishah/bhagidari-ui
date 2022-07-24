@@ -7,7 +7,8 @@ import {
     FETCH_SHARE,
     CREATE_SHARE,
     EDIT_SHARE,
-    LOGOUT
+    LOGOUT,
+    DELETE_SHARE
 } from './types'
 
 import history from '../histoty';
@@ -62,6 +63,19 @@ export const editShare = (id, formValues) => async dispatch => {
     } catch (e) {
         if (get(e, 'response.data.statusCode') === 401) {
             dispatch({ type: LOGOUT })
+            authService.logout();
+            history.push('/login');
+        }
+    }
+}
+
+export const deleteShare = (id) => async dispatch => {
+    try {
+        const response = await base.delete(`/shares/${id}`, { headers: authHeader() });
+        dispatch({ type: DELETE_SHARE, payload: { id } })
+    } catch (e) {
+        if (get(e, 'response.data.statusCode') === 401) {
+            dispatch({ type: LOGOUT });
             authService.logout();
             history.push('/login');
         }

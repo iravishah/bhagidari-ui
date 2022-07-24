@@ -6,7 +6,8 @@ import {
     FETCH_LAND,
     CREATE_LAND,
     EDIT_LAND,
-    LOGOUT
+    LOGOUT,
+    DELETE_LAND
 } from './types';
 import authHeader from '../services/auth/auth-header';
 import authService from '../services/auth/auth.service';
@@ -56,6 +57,20 @@ export const editLand = (id, formValues) => async dispatch => {
     try {
         const response = await base.put(`/lands/${id}`, formValues, { headers: authHeader() });
         dispatch({ type: EDIT_LAND, payload: response.data });
+        history.push('/lands/list');
+    } catch (e) {
+        if (get(e, 'response.data.statusCode') === 401) {
+            dispatch({ type: LOGOUT });
+            authService.logout();
+            history.push('/login');
+        }
+    }
+}
+
+export const deleteLand = (id) => async dispatch => {
+    try {
+        const response = await base.delete(`/lands/${id}`, { headers: authHeader() });
+        dispatch({ type: DELETE_LAND, payload: { id } });
         history.push('/lands/list');
     } catch (e) {
         if (get(e, 'response.data.statusCode') === 401) {

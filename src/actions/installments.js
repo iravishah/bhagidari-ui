@@ -69,7 +69,8 @@ export const editInstallment = (id, formValues) => async dispatch => {
 export const deleteInstallment = (id) => async dispatch => {
     try {
         const response = await base.delete(`/installments/${id}`, { headers: authHeader() });
-        dispatch({ type: DELETE_INSTALLMENT, payload: response.data });
+        dispatch({ type: DELETE_INSTALLMENT, payload: { id } });
+        history.push('/installments/list');
     } catch (e) {
         if (get(e, 'response.data.statusCode') === 401) {
             dispatch({ type: LOGOUT });
