@@ -26,7 +26,10 @@ class Header extends React.Component {
                             Investor Shares
                         </Link>
                         <Link to="/installments/list" className="item">
-                            Installments
+                            Credit Installments
+                        </Link>
+                        <Link to="/debit_installments/list" className="item">
+                            Debit Installments
                         </Link>
                         <Logout />
                     </div>

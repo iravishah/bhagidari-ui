@@ -70,13 +70,16 @@ export const editCompany = (id, formValues) => async dispatch => {
 export const deleteCompany = (id) => async dispatch => {
     try {
         const response = await base.delete(`/companies/${id}`, { headers: authHeader() });
-        dispatch({ type: DELETE_COMPANY, payload: { id } });
+        dispatch({ type: DELETE_COMPANY, payload: { id }, errorMsg: null });
         history.push("/companies/list");
     } catch (e) {
         if (get(e, 'response.data.statusCode') === 401) {
             dispatch({ type: LOGOUT });
             authService.logout();
             history.push('/login');
+        }
+        if (get(e, 'response.data.statusCode') === 412) {
+            dispatch({ type: DELETE_COMPANY, payload: null, errorMsg: e.response.data.message });
         }
     }
 }

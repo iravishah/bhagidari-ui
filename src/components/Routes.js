@@ -27,6 +27,10 @@ import InstallmentList from './Installment/InstallmentList';
 import InstallmentCreate from './Installment/InstallmentCreate';
 import InstallmentEdit from './Installment/InstallmentEdit';
 
+import DebitInstallmentList from './DebitInstallment/DebitInstallmentList';
+import DebitInstallmentCreate from './DebitInstallment/DebitInstallmentCreate';
+import DebitInstallmentEdit from './DebitInstallment/DebitInstallmentEdit';
+
 class Routes extends React.Component {
     componentDidMount() {
         let token = localStorage.getItem('token');
@@ -67,6 +71,10 @@ class Routes extends React.Component {
                 <Route path="/installments/list" exact component={InstallmentList} />
                 <Route path="/installments/create" exact component={InstallmentCreate} />
                 <Route path="/installments/:id/edit" exact component={InstallmentEdit} />
+
+                <Route path="/debit_installments/list" exact component={DebitInstallmentList} />
+                <Route path="/debit_installments/create" exact component={DebitInstallmentCreate} />
+                <Route path="/debit_installments/:id/edit" exact component={DebitInstallmentEdit} />
             </div>
         )
     }

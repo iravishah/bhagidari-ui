@@ -12,7 +12,7 @@ export default (state = {}, action) => {
             return { ...state, isLoggedIn: true, token: action.payload }
         case LOGOUT:
         case LOGIN_FAIL:
-            return { ...state, isLoggedIn: false, token: null }
+            return { ...state, isLoggedIn: false, token: null, errorMsg: action.errorMsg }
         case SET_MESSAGE:
             return { ...state, message: action.payload.message }
         case CLEAR_MESSAGE:

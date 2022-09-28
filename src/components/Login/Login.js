@@ -39,7 +39,7 @@ class LoginForm extends React.Component {
                 className="ui form error"
             >
                 <div className="ui error message">
-                    {this.props.message ? 'Invalid user name or password' : null}
+                    {this.props.errorMsg}
                 </div>
                 <Field
                     name="username"
@@ -78,7 +78,7 @@ const formWrapped = reduxForm({
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.auth.isLoggedIn,
-        message: state.auth.message
+        errorMsg: state.auth.errorMsg
     }
 }
 

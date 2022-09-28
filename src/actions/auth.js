@@ -12,12 +12,12 @@ import history from '../histoty';
 export const login = (username, password) => async dispatch => {
     const response = await AuthService.login(username, password);
     if (response instanceof Error) {
-        dispatch({ type: LOGIN_FAIL });
-        dispatch({ type: SET_MESSAGE, payload: response.response.data });
+        dispatch({ type: LOGIN_FAIL, payload: null, errorMsg: 'Invalid username or password' });
+        // dispatch({ type: SET_MESSAGE, payload: response.response.data });
         return;
     }
-    dispatch({ type: LOGIN_SUCCESS, payload: response });
-    dispatch({ type: CLEAR_MESSAGE });
+    dispatch({ type: LOGIN_SUCCESS, payload: response, errorMsg: null });
+    // dispatch({ type: CLEAR_MESSAGE });
     history.push('/');
 }
 

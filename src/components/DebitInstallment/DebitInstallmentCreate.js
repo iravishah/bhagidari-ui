@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchCompanies } from '../../actions/companies';
 import { fetchPartners } from '../../actions/partners';
-import { createInstallment } from '../../actions/installments';
-import InstallmentForm from './InstallmentForm';
+import { createDebitInstallment } from '../../actions/debit_installments';
+import InstallmentForm from './DebitInstallmentForm';
 
-class InstallmentCreate extends React.Component {
+class DebitInstallmentCreate extends React.Component {
 
     componentDidMount() {
         this.props.fetchPartners();
@@ -13,7 +13,7 @@ class InstallmentCreate extends React.Component {
     }
 
     onSubmit = (formValues) => {
-        this.props.createInstallment(formValues);
+        this.props.createDebitInstallment(formValues);
     }
 
     render() {
@@ -29,7 +29,7 @@ class InstallmentCreate extends React.Component {
         }
         return (
             <div>
-                <h3>Create an Installment</h3>
+                <h3>Create a Debit Installment</h3>
                 <InstallmentForm
                     initialValues={{ company: this.props.companies[0]._id, partner: this.props.partners[0]._id }}
                     onSubmit={this.onSubmit}
@@ -50,7 +50,7 @@ const mapStateToProps = (state) => {
 
 export default connect(
     mapStateToProps, {
-    createInstallment,
+    createDebitInstallment,
     fetchCompanies,
     fetchPartners
-})(InstallmentCreate)
+})(DebitInstallmentCreate)

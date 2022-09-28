@@ -2,24 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { pick, merge } from 'lodash';
 
-import InstallmentForm from './InstallmentForm';
+import InstallmentForm from './DebitInstallmentForm';
 import { fetchCompanies } from '../../actions/companies';
 import { fetchPartners } from '../../actions/partners';
-import { fetchInstallment, editInstallment } from '../../actions/installments';
+import { fetchDebitInstallment, editDebitInstallment } from '../../actions/debit_installments';
 
 class InstallmentEdit extends React.Component {
     componentDidMount() {
-        this.props.fetchInstallment(this.props.match.params.id);
+        this.props.fetchDebitInstallment(this.props.match.params.id);
         this.props.fetchCompanies();
         this.props.fetchPartners();
     }
 
     onSubmit = (formValues) => {
-        this.props.editInstallment(this.props.match.params.id, formValues)
+        this.props.editDebitInstallment(this.props.match.params.id, formValues)
     }
 
     render() {
-        if (!this.props.installment ||
+        if (!this.props.debit_installment ||
             !this.props.companies ||
             !this.props.companies.length ||
             !this.props.partners ||
@@ -28,9 +28,9 @@ class InstallmentEdit extends React.Component {
         }
         return (
             <div>
-                <h3>Edit an Installment</h3>
+                <h3>Edit a Debit Installation</h3>
                 <InstallmentForm
-                    initialValues={merge(pick(this.props.installment, ['percentage', 'installment_at']), { company: this.props.installment.company._id }, { partner: this.props.installment.partner._id })}
+                    initialValues={merge(pick(this.props.debit_installment, ['percentage', 'settled_at']), { company: this.props.debit_installment.company._id }, { partner: this.props.debit_installment.partner._id })}
                     onSubmit={this.onSubmit}
                     companies={this.props.companies}
                     partners={this.props.partners}
@@ -42,10 +42,10 @@ class InstallmentEdit extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        installment: state.installments[ownProps.match.params.id],
+        debit_installment: state.debit_installments[ownProps.match.params.id],
         companies: Object.values(state.companies),
         partners: Object.values(state.partners)
     }
 }
 
-export default connect(mapStateToProps, { fetchPartners, fetchCompanies, editInstallment, fetchInstallment })(InstallmentEdit);
+export default connect(mapStateToProps, { fetchPartners, fetchCompanies, editDebitInstallment, fetchDebitInstallment })(InstallmentEdit);
